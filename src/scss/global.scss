@@ -1,0 +1,49 @@
+@import "./index.scss";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import '@fontsource-variable/noto-sans/wdth.css';
+
+*
+{
+    color: $text-primary;
+}
+body{
+    font-family: 'Noto Sans Variable', sans-serif;
+    background-color: $background-primary;
+    margin: 0;
+}
+h1, h2, h3, h4, h5, h6
+{
+    margin: 0;
+}
+p
+{
+    margin: 0;
+}
+a
+{
+    text-decoration: none;
+    color: $text-primary;
+
+    &:hover
+    {
+        color: $primary;
+    }
+}
+
+.button-primary
+{
+    cursor: pointer;
+    border: none;
+    background-color: $secondary;
+    color: $text-primary;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s;
+
+    &:hover
+    {
+        background-color: $secondary-hover;
+    }
+}
