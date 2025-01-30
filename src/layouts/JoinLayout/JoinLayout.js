@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./JoinLayout.module.scss";
 import Link from "next/link";
 
@@ -10,9 +10,17 @@ export function JoinLayout(props) {
     "/images/sign-wallpaper2.webp",
     "/images/sign-wallpaper3.webp",
   ];
-  // Selecciona una imagen aleatoria
-  const randomBackground =
-    backgrounds[Math.floor(Math.random() * backgrounds.length)];
+
+  // Estado para la imagen de fondo
+  const [background, setBackground] = useState(backgrounds[0]);
+
+  // Cambiar la imagen solo en el cliente
+  useEffect(() => {
+    const randomBackground =
+      backgrounds[Math.floor(Math.random() * backgrounds.length)];
+    setBackground(randomBackground);
+  }, []);
+
   return (
     <div className={style.container}>
       <div className={style.topBar}>
@@ -24,7 +32,7 @@ export function JoinLayout(props) {
       <div className={style.blockLeft}> {children} </div>
       <div
         className={style.blockRight}
-        style={{ backgroundImage: `url(${randomBackground})` }}
+        style={{ backgroundImage: `url(${background})` }}
       >
         {" "}
       </div>

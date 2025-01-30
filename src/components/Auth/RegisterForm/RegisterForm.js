@@ -4,24 +4,37 @@ import { UserIcon } from "./UserIcon";
 import { PassIcon } from "./PassIcon";
 import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./RegisterForm.form";
+import { Auth } from "@/api";
+
+const authCtrl = new Auth();
 
 export function RegisterForm() {
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: validationSchema(),
-    validateOnChange: false,
-    onSubmit: (formValue) => {
-      console.log("Formulario Enviado");
-      console.log(formValue);
+    validateOnChange: true, // Cambiado a true para validar en tiempo real
+    onSubmit: async (formRegister) => {
+      try {
+        await authCtrl.register(formRegister);
+        console.log("Usuario registrado correctamente");
+      } catch (error) {
+        console.error(error);
+      }
     },
   });
+
   return (
     <div>
-      <form class="max-w-sm mx-auto" onSubmit={formik.handleSubmit}>
-        <div class="mb-5">
+      <form
+        name="formRegister"
+        id="formRegister"
+        className="max-w-sm mx-auto"
+        onSubmit={formik.handleSubmit}
+      >
+        <div className="mb-5">
           <label
-            for="email"
-            class="flex mb-2 text-sm font-medium text-white items-center"
+            htmlFor="email"
+            className="flex mb-2 text-sm font-medium text-white items-center"
           >
             <MailIcon />
             Tu correo electronico{" "}
@@ -30,44 +43,35 @@ export function RegisterForm() {
             type="text"
             name="email"
             id="email"
-            class="shadow-xs bg-zinc-700 border-zinc-800 border-[1px] text-white text-sm rounded-lg block w-full p-2.5 focus:outline-none  "
+            className="shadow-xs bg-zinc-700 border-zinc-800 border-[1px] text-white text-sm rounded-lg block w-full p-2.5 focus:outline-none"
             placeholder="tucorreo@dominio.com"
             value={formik.values.email}
             onChange={formik.handleChange}
-            error={formik.errors.email}
           />
+          {formik.errors.email && (
+            <div className="text-red-500">{formik.errors.email}</div>
+          )}
         </div>
-        <div class="mb-5">
-          <label for="user" class="flex mb-2 text-sm font-medium ">
+        <div className="mb-5">
+          <label htmlFor="username" className="flex mb-2 text-sm font-medium">
             <UserIcon />
             Tu usuario
           </label>
           <input
             type="text"
-            name="user"
-            id="user"
-            class="shadow-xs bg-zinc-700 border-zinc-800 border-[1px] text-sm rounded-lg block w-full p-2.5"
-            value={formik.values.user}
+            name="username"
+            id="username"
+            className="shadow-xs bg-zinc-700 border-zinc-800 border-[1px] text-sm rounded-lg block w-full p-2.5"
+            value={formik.values.username}
             onChange={formik.handleChange}
-            error={formik.errors.user}
           />
+          {formik.errors.username && (
+            <div className="text-red-500">{formik.errors.username}</div>
+          )}
         </div>
-        <div class="mb-5">
-          <label for="name" class="flex mb-2 text-sm font-medium ">
-            Nombre y apellidos
-          </label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            class="shadow-xs bg-zinc-700 border-zinc-800 border-[1px] text-sm rounded-lg block w-full p-2.5"
-            value={formik.values.name}
-            onChange={formik.handleChange}
-            error={formik.errors.name}
-          />
-        </div>
-        <div class="mb-5">
-          <label for="password" class="flex mb-2 text-sm font-medium ">
+
+        <div className="mb-5">
+          <label htmlFor="password" className="flex mb-2 text-sm font-medium">
             <PassIcon />
             Tu contraseña
           </label>
@@ -75,41 +79,18 @@ export function RegisterForm() {
             type="password"
             name="password"
             id="password"
-            class="shadow-xs bg-zinc-700 border-zinc-800 border-[1px] text-sm rounded-lg block w-full p-2.5"
+            className="shadow-xs bg-zinc-700 border-zinc-800 border-[1px] text-sm rounded-lg block w-full p-2.5"
             value={formik.values.password}
             onChange={formik.handleChange}
-            error={formik.errors.password}
           />
+          {formik.errors.password && (
+            <div className="text-red-500">{formik.errors.password}</div>
+          )}
         </div>
 
-        <div class="flex items-start mb-5">
-          <div class="flex items-center h-5">
-            <input
-              id="terms"
-              type="checkbox"
-              value=""
-              class="w-4 h-4 border border-gray-300 rounded-sm bg-gray-50 focus:ring-3 focus:ring-[#26aa1a]"
-              required
-            />
-          </div>
-          <label
-            for="terms"
-            class="ms-2 text-sm font-medium text-gray-100 dark:text-gray-300"
-          >
-            Yo acepto los{" "}
-            <a
-              href="#"
-              class="text-[#26aa1a] hover:underline transition-all duration-300"
-            >
-              términos y condiciones
-            </a>
-          </label>
-        </div>
         <button
           type="submit"
-          fluid
-          loading={formik.isSubmitting}
-          class="text-white bg-[#1d7a15] hover:bg-[#10310d] transition-all duration-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center w-full flex justify-center"
+          className="text-white bg-[#1d7a15] hover:bg-[#10310d] transition-all duration-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center w-full flex justify-center"
         >
           Crear Cuenta
         </button>
