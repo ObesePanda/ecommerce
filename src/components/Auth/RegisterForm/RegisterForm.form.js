@@ -4,7 +4,6 @@ export function initialValues() {
   return {
     email: "",
     username: "",
-
     password: "",
   };
 }
@@ -15,7 +14,6 @@ export function validationSchema() {
       .email("Correo electrónico inválido")
       .required("Este campo es requerido"),
     username: Yup.string().required("Este campo es requerido"),
-
     password: Yup.string().required("Este campo es requerido"),
   });
 }

@@ -4,11 +4,13 @@ import { UserIcon } from "./UserIcon";
 import { PassIcon } from "./PassIcon";
 import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./RegisterForm.form";
+import { useRouter } from "next/router";
 import { Auth } from "@/api";
 
 const authCtrl = new Auth();
 
 export function RegisterForm() {
+  const router = useRouter();
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: validationSchema(),
@@ -16,6 +18,7 @@ export function RegisterForm() {
     onSubmit: async (formRegister) => {
       try {
         await authCtrl.register(formRegister);
+        router.push("/join/sign-in");
         console.log("Usuario registrado correctamente");
       } catch (error) {
         console.error(error);
