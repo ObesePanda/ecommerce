@@ -7,10 +7,10 @@ export default function SignUpPage() {
   return (
     <>
       <JoinLayout>
-        <div className="flex flex-col items-center justify-center w-[70%] h-full space-y-4">
+        <div className="flex flex-col items-center justify-center w-[70%] h-full my-auto space-y-4 -mt-8">
           <Link href="/">
             <img
-              className="size-52 -mb-10"
+              className="size-52 -mb-11"
               src="/images/logotipo.webp"
               alt="Logotipo Tienda"
             ></img>

@@ -1,25 +1,23 @@
 import React from "react";
-import { MailIcon } from "./MailIcon";
-import { UserIcon } from "./UserIcon";
-import { PassIcon } from "./PassIcon";
 import { useFormik } from "formik";
-import { initialValues, validationSchema } from "./RegisterForm.form";
-import { useRouter } from "next/router";
+import { initialValues, validationSchema } from "./LoginForm.form";
 import { Auth } from "@/api";
-
+import { useRouter } from "next/router";
+import { useAuth } from "@/hooks";
 const authCtrl = new Auth();
 
-export function RegisterForm() {
+export function LoginForm() {
   const router = useRouter();
+  console.log(useAuth());
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: validationSchema(),
     validateOnChange: true, // Cambiado a true para validar en tiempo real
-    onSubmit: async (formRegister) => {
+    onSubmit: async (formLogin) => {
       try {
-        await authCtrl.register(formRegister);
-        router.push("/join/sign-in");
-        console.log("Usuario registrado correctamente");
+        const response = await authCtrl.login(formLogin);
+        console.log(response);
+        //router.push("/");
       } catch (error) {
         console.error(error);
       }
@@ -29,53 +27,33 @@ export function RegisterForm() {
   return (
     <div>
       <form
-        name="formRegister"
-        id="formRegister"
-        className="max-w-md mx-auto"
+        name="formLogin"
+        id="formLogin"
+        className="max-w-md mx-auto "
         onSubmit={formik.handleSubmit}
       >
         <div className="mb-5">
           <label
-            htmlFor="email"
+            htmlFor="identifier"
             className="flex mb-2 text-sm font-medium text-white items-center"
           >
-            <MailIcon />
             Tu correo electronico{" "}
           </label>
           <input
             type="text"
-            name="email"
-            id="email"
+            name="identifier"
+            id="identifier"
             className="shadow-xs bg-zinc-700 border-zinc-800 border-[1px] text-white text-sm rounded-lg block w-full p-2.5 focus:outline-none"
-            placeholder="tucorreo@dominio.com"
-            value={formik.values.email}
+            placeholder="Correo electronico o nombre de usuario"
+            value={formik.values.identifier}
             onChange={formik.handleChange}
           />
-          {formik.errors.email && (
-            <div className="text-red-500">{formik.errors.email}</div>
+          {formik.errors.identifier && (
+            <div className="text-red-500">{formik.errors.identifier}</div>
           )}
         </div>
-        <div className="mb-5">
-          <label htmlFor="username" className="flex mb-2 text-sm font-medium">
-            <UserIcon />
-            Tu usuario
-          </label>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            className="shadow-xs bg-zinc-700 border-zinc-800 border-[1px] text-sm rounded-lg block w-full p-2.5"
-            value={formik.values.username}
-            onChange={formik.handleChange}
-          />
-          {formik.errors.username && (
-            <div className="text-red-500">{formik.errors.username}</div>
-          )}
-        </div>
-
         <div className="mb-5">
           <label htmlFor="password" className="flex mb-2 text-sm font-medium">
-            <PassIcon />
             Tu contraseña
           </label>
           <input
@@ -95,7 +73,7 @@ export function RegisterForm() {
           type="submit"
           className="text-white bg-[#1d7a15] hover:bg-[#10310d] transition-all duration-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center w-[300px] flex justify-center"
         >
-          Crear Cuenta
+          Iniciar Sesión
         </button>
       </form>
     </div>
