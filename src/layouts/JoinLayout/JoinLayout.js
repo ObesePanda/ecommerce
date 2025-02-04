@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
 import style from "./JoinLayout.module.scss";
 import Link from "next/link";
+import { useAuth } from "@/hooks";
+import { useRouter } from "next/router";
 
 export function JoinLayout(props) {
   const { children } = props;
+  const router = useRouter();
+  const { user } = useAuth();
+
+  if (user) router.push("/");
+
   const backgrounds = [
     "/images/wallpaper_signup.webp",
     "/images/sign-wallpaper.jpg",
