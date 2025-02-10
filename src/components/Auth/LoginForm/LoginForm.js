@@ -1,16 +1,14 @@
 import React from "react";
 import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./LoginForm.form";
-import { Auth } from "@/api";
+import { Auth } from "@/api/auth"; // En lugar de "@/api"
 import { useRouter } from "next/router";
 import { useAuth } from "@/hooks";
-const authCtrl = new Auth();
 
+const authCtrl = new Auth();
 export function LoginForm() {
   const router = useRouter();
   const { login } = useAuth();
-
-  console.log(useAuth());
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: validationSchema(),
@@ -19,7 +17,6 @@ export function LoginForm() {
       try {
         const response = await authCtrl.login(formLogin);
         login(response.jwt);
-        console.log(response);
         //router.push("/");
       } catch (error) {
         console.error(error);
@@ -40,7 +37,7 @@ export function LoginForm() {
             htmlFor="identifier"
             className="flex mb-2 text-sm font-medium text-white items-center"
           >
-            Tu correo electronico{" "}
+            Tu correo electronico
           </label>
           <input
             type="text"
@@ -63,7 +60,7 @@ export function LoginForm() {
             type="password"
             name="password"
             id="password"
-            className="shadow-xs bg-zinc-700 border-zinc-800 border-[1px] text-sm rounded-lg block w-full p-2.5"
+            className="shadow-xs bg-zinc-700 border-zinc-800 border-[1px] text-sm rounded-lg block w-full p-2.5 focus:outline-none"
             value={formik.values.password}
             onChange={formik.handleChange}
           />

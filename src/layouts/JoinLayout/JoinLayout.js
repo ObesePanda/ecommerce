@@ -9,8 +9,10 @@ export function JoinLayout(props) {
   const router = useRouter();
   const { user } = useAuth();
 
-  if (user) router.push("/");
-
+  if (user) {
+    router.push("/");
+    return null;
+  }
   const backgrounds = [
     "/images/wallpaper_signup.webp",
     "/images/sign-wallpaper.jpg",

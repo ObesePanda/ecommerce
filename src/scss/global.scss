@@ -47,3 +47,19 @@ a
         background-color: $secondary-hover;
     }
 }
+
+.button-secondary
+{
+    cursor: pointer;
+    border: none;
+    background-color: $secondary;
+    color: $text-primary;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s;
+
+    &:hover
+    {
+        background-color: $secondary-hover;
+    }
+}
