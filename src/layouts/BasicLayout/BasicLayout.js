@@ -1,5 +1,6 @@
 import styles from "./BasicLayout.module.scss";
 import { Container } from "semantic-ui-react";
+import { TopBar } from "@/components/Layout";
 import classNames from "classnames";
 
 export function BasicLayout(props) {
@@ -11,7 +12,7 @@ export function BasicLayout(props) {
   } = props;
   return (
     <>
-      {/*TopBar*/}
+      <TopBar isOpenSearch={isOpenSearch} />
 
       <Container fluid>
         <div className={classNames({ [styles.relative]: relative })}>
