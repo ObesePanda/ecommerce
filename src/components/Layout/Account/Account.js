@@ -21,6 +21,15 @@ export function Account() {
         <Icon name="cart" onClick={goToCard} />
         {total > 0 && <Label circular>{total}</Label>}
       </Button>
+      {!user ? (
+        <Button icon>
+          <Icon name="user outline" onClick={goToLogin} />
+        </Button>
+      ) : (
+        <Button icon className={styles.user}>
+          <Icon name="user outline" onClick={goToAccound} />
+        </Button>
+      )}
     </div>
   );
 }

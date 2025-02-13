@@ -1,0 +1,26 @@
+@import "~/src/scss/index.scss";
+
+
+.account{
+    display: flex;
+
+    button{
+        background-color:  transparent !important;
+        margin-left: 10px !important;
+
+        &:hover{
+            > i{
+                color: $primary;
+            }
+
+        }
+
+        > i {
+            font-size: 18px;
+            height: 20px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
