@@ -40,13 +40,13 @@
     }
 
     .user_icon{
-        background-color: $background-quaternary !important;
+        background-color: $background-secondary !important;
         border-radius: 10px;
-        border: 2px solid $background-quaternary;
+        border: 2px solid $background-secondary;
 
         &:hover
         {
-            border: 2px solid $primary;
+            border: 1.5px solid $primary;
 
             i{
                 color: $text-primary;
