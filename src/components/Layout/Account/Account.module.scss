@@ -23,4 +23,38 @@
             justify-content: center;
         }
     }
+
+    .cart
+    {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        > div {
+            background-color:  $primary;
+            color: $text-secondary;
+            font-size: 10px;
+            margin-left: 5px;    
+       
+        }
+    }
+
+    .user_icon{
+        background-color: $background-quaternary !important;
+        border-radius: 10px;
+        border: 2px solid $background-quaternary;
+
+        &:hover
+        {
+            border: 2px solid $primary;
+
+            i{
+                color: $text-primary;
+            }
+        }
+
+    }
+ 
 }
+
+
