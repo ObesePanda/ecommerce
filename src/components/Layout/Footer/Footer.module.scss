@@ -1,0 +1,91 @@
+@import "~/src/scss/index.scss";
+
+
+.footer{
+
+    background-color: $background-secondary;
+    padding: 30px 0;
+}
+.columns
+{
+    display: flex;    
+    justify-content: space-between;
+
+    >div {
+        width: 33.3%;
+
+        >a> img {           
+            width: 150px;
+            padding: 10px;
+        }
+        &.social
+        {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        >a{
+            margin-left: 10px;
+        }
+    }  
+    }  
+    
+}
+
+.footer_logos
+{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.footer_menu
+{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    gap: 5px;
+}
+
+.copyright
+{
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid $border-primary;
+
+    > span{
+        color: #9c9c9c;
+    }
+}
+
+@media (width <= 575px) {
+    .columns
+{
+    display: flex;    
+    flex-direction: column;    
+    align-items: center;
+
+    >div {
+        width: 33.3%;
+        margin-bottom: 30px;
+
+        
+        &.social
+        {
+        display: flex;
+        justify-content: center;       
+
+        >a{
+            margin-left: 10px;
+        }
+    }  
+    }  
+}
+.footer_menu
+{
+    display: flex;
+    flex-direction: column;   
+    text-align: center; 
+}
+}
