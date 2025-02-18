@@ -8,21 +8,9 @@ export function Footer() {
       <Container>
         <div className={styles.columns}>
           <div className={styles.social}>
-            <Button
-              as=""
-              href="#"
-              rectangular
-              color="facebook"
-              icon="facebook"
-            />
-            <Button
-              as=""
-              href="#"
-              rectangular
-              color="instagram"
-              icon="instagram"
-            />
-            <Button as="" href="#" rectangular color="youtube" icon="youtube" />
+            <Button as="" href="#" color="facebook" icon="facebook" />
+            <Button as="" href="#" color="instagram" icon="instagram" />
+            <Button as="" href="#" color="youtube" icon="youtube" />
           </div>
 
           <div>
